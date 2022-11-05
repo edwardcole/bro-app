@@ -9,6 +9,10 @@ install-deps:
 setup-postgres:	
 	echo "Set password for postgresql"
 	sudo passwd postgres
+	sudo -u postgres createuser bro
+	sudo -u postgres createdb bro
+	sudo -u postgres psql -c "alter user bro with encrypted password 'corroornisism'"
+	sudo -u postgres psql -c "grant all privileges on database bro to bro"
 
 start-postgres:
 	sudo service postgresql start
